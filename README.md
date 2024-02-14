@@ -5,6 +5,9 @@
 
 # Medium SDK for TypeScript
 
+![medium-sdk-ts: Stable](https://img.shields.io/badge/medium--sdk--ts-stable-success.svg?style=for-the-badge)
+[![npm](https://img.shields.io/npm/v/medium-sdk-ts?style=for-the-badge)](https://www.npmjs.com/package/medium-sdk-ts)
+
 This repository contains the open source SDK for integrating [Medium](https://medium.com)'s OAuth2 API into your TypeScript (or NodeJs) app.
 
 View the full [documentation here](https://github.com/Medium/medium-api-docs).
