@@ -1,0 +1,37 @@
+# Don't include original .ts files when doing `npm pack`
+*.ts
+!*.d.ts
+coverage
+.nyc_output
+*.tgz
+.*
+
+dist
+.LAST_PACKAGE
+.LAST_BUILD
+!*.js
+
+# Include .jsii
+!.jsii
+
+*.snk
+
+*.tsbuildinfo
+
+.vscode
+.idea
+.editorconfig
+.eslintignore
+.eslintrc.*
+.prettierignore
+.prettierrc.yaml
+.gitattributes
+tsconfig.json
+jest.config.js
+
+junit.xml
+test/
+!*.lit.ts
+
+# exclude changelog (can always be found on GitHub)
+CHANGELOG.md

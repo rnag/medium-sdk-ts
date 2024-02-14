@@ -1,0 +1,50 @@
+{
+  "name": "medium-sdk-ts",
+  "version": "0.0.2",
+  "description": "TypeScript (TS) client for the Medium SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "publish": "npm run build && npm publish",
+    "test": "jest",
+    "c": "npm run checkAll",
+    "u": "npm run updateAll",
+    "checkAll": "ncu --cwd --deep",
+    "updateAll": "ncu -u --cwd --deep"
+  },
+  "keywords": [
+    "medium",
+    "api",
+    "writing",
+    "nodejs",
+    "typescript",
+    "ts"
+  ],
+  "author": "Ritvik Nag <me@ritviknag.com> (https://github.com/rnag)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnag/medium-sdk-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rnag/medium-sdk-ts/issues"
+  },
+  "homepage": "https://github.com/rnag/medium-sdk-ts#readme",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.17",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "ts-jest": "^29.1.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}
