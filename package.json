@@ -1,6 +1,6 @@
 {
   "name": "medium-sdk-ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "TypeScript (TS) client for the Medium SDK",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
