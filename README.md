@@ -33,25 +33,39 @@ import {
   PostPublishStatus,
 } from 'medium-sdk-ts';
 
+// Uncomment for CommonJS (Require)
+// const {
+//     MediumClient,
+//     PostContentFormat,
+//     PostPublishStatus,
+// } = require('medium-sdk-ts');
+
 // Access Token is optional, can also be set
 // as environment variable `MEDIUM_ACCESS_TOKEN`
 const medium = new MediumClient('YOUR_ACCESS_TOKEN');
 
-const { id: userId, username } = await medium.getUser();
+async function main() {
+  const user = await medium.getUser();
+  console.log(`User: ${JSON.stringify(user, null, 2)}`);
 
-// Publish New Draft Post for User
-const post = await medium.createPost({
-  userId,
-  title: 'A new post',
-  contentFormat: PostContentFormat.HTML,
-  content: '<h1>A New Post</h1><p>This is my new post.</p>',
-  publishStatus: PostPublishStatus.DRAFT,
-});
-console.log(`New Post: ${JSON.stringify(post, null, 2)}`);
+  const { id: userId, username } = user;
 
-// Get User's Published Posts
-const postTitles = await medium.getUserPostTitles(username);
-console.log(`User Posts: ${JSON.stringify(postTitles, null, 2)}`);
+  // Publish New Draft Post for User
+  const post = await medium.createPost({
+    userId,
+    title: 'A new post',
+    contentFormat: PostContentFormat.HTML,
+    content: '<h1>A New Post</h1><p>This is my new post.</p>',
+    publishStatus: PostPublishStatus.DRAFT,
+  });
+  console.log(`New Post: ${JSON.stringify(post, null, 2)}`);
+
+  // Get User's Published Posts
+  const postTitles = await medium.getUserPostTitles(username);
+  console.log(`User Posts: ${JSON.stringify(postTitles, null, 2)}`);
+}
+
+main();
 ```
 
 Contributing
