@@ -42,6 +42,7 @@
     "url": "https://github.com/rnag/medium-sdk-ts/issues"
   },
   "homepage": "https://github.com/rnag/medium-sdk-ts#readme",
+  "packageManager": "pnpm@8.x",
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
     "@types/jest": "^29.5.12",
