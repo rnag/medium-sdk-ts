@@ -1,7 +1,7 @@
 [//]: # (&#40;https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts&#41;)
 
 > [!WARNING]
-> This SDK is no longer supported or maintained by Medium.
+> This API is no longer supported or maintained by Medium.
 
 # Medium SDK for TypeScript
 
@@ -86,8 +86,8 @@ Authors
 License
 -------
 
-* Copyright 2015 [A Medium Corporation](https://medium.com)
 * Copyright 2024 [Ritvik Nag](https://github.com/rnag)
+* Copyright 2015 [A Medium Corporation](https://medium.com)
 
 Originally Licensed under Apache License Version 2.0.
 
