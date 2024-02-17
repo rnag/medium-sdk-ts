@@ -367,7 +367,7 @@ class MediumClient {
         };
     }
 
-    async _getPostTitles(username: string, page: number) {
+    private async _getPostTitles(username: string, page: number) {
         let graphqlBody = {
             operationName: 'UserStreamOverview',
             query: graphqlQueryMin,
