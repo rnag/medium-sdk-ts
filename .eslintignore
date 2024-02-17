@@ -12,6 +12,7 @@ lerna-debug.log*
 
 # Test
 jest.config.js
+*.test.ts
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

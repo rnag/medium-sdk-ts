@@ -2,6 +2,11 @@
 
 import { CreatePostRequest, MediumClient } from '.';
 
+const itif = (condition: boolean): jest.It =>
+    condition ? it : it.skip;
+
+const localTest = itif(!process.env.RUNNING_ON_CI);
+
 // Jest tests require `MEDIUM_ACCESS_TOKEN` environment variable
 describe('Medium SDK', () => {
     const medium = new MediumClient();
@@ -21,7 +26,7 @@ describe('Medium SDK', () => {
         console.log(result);
     });
 
-    test('Create Draft Post', async () => {
+    localTest('Create Draft Post', async () => {
         let newPost: CreatePostRequest = {
             title: 'ABC Test',
             content:

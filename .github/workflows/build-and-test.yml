@@ -83,4 +83,5 @@ jobs:
       - name: Run tests
         env:
           MEDIUM_ACCESS_TOKEN: ${{ secrets.MEDIUM_ACCESS_TOKEN }}
+          RUNNING_ON_CI: 1
         run: npm test
