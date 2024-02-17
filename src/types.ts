@@ -10,6 +10,14 @@ type CreatePostRequest = {
     license?: PostLicense;
 };
 
+type PublishedPost = {
+    id: string;
+    title: string;
+    link: string;
+    pubDate: number;
+    categories: string[];
+};
+
 type Post = {
     id: string;
     title: string;
@@ -72,5 +80,6 @@ export {
     PostContentFormat,
     PostLicense,
     PostPublishStatus,
+    PublishedPost,
     User,
 };

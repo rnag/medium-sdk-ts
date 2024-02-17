@@ -7,6 +7,7 @@ import {
     PostContentFormat,
     PostLicense,
     PostPublishStatus,
+    PublishedPost,
     User,
 } from './types';
 
@@ -254,13 +255,48 @@ class MediumClient {
         }
     }
 
-    async getUserPostTitles(username: string): Promise<string[]> {
+    /**
+     * Retrieve the published posts
+     * under a Medium username.
+     *
+     * For example, given a profile URL at:
+     *   https://medium.com/@my-user
+     *
+     * Username can be either `@my-user` or `my-user` (in this example).
+     *
+     * @param username Medium user to retrieve published posts for.
+     */
+    async getPosts(username: string): Promise<PublishedPost[]> {
+        let next: number = 0,
+            allPosts: PublishedPost[] = [],
+            posts: PublishedPost[];
+
+        while (next != null) {
+            ({ posts, next } = await this._getPosts(username, next));
+            allPosts.push(...posts);
+        }
+
+        return allPosts;
+    }
+
+    /**
+     * Retrieve the **titles** of published posts
+     * under a Medium username.
+     *
+     * For example, given a profile URL at:
+     *   https://medium.com/@my-user
+     *
+     * Username can be either `@my-user` or `my-user` (in this example).
+     *
+     * @param username Medium user to retrieve published posts for.
+     */
+    async getPostTitles(username: string): Promise<string[]> {
         let next: number = 0,
             allPosts: string[] = [],
             posts: string[];
 
         while (next != null) {
-            ({ posts, next } = await this._getUserPostTitles(
+            ({ posts, next } = await this._getPostTitles(
                 username,
                 next
             ));
@@ -270,23 +306,7 @@ class MediumClient {
         return allPosts;
     }
 
-    async getUserPosts(username: string) {
-        let next = 0,
-            allPosts = [],
-            posts;
-
-        while (next != null) {
-            ({ posts, next } = await this._getUserPosts(
-                username,
-                next
-            ));
-            allPosts.push(...posts);
-        }
-
-        return allPosts;
-    }
-
-    private async _getUserPosts(username: string, page: number) {
+    private async _getPosts(username: string, page: number) {
         let graphqlBody = {
             operationName: 'UserStreamOverview',
             query: graphqlQuery,
@@ -314,23 +334,24 @@ class MediumClient {
         let resp_data = await resp.json();
         let author: string = resp_data.data.user.name;
         // noinspection JSUnresolvedReference
-        let posts = resp_data.data.user.profileStreamConnection.stream
-            .map((stream: any) => {
-                // noinspection JSUnresolvedReference
-                return stream.itemType.post;
-            })
-            .map((post: any) => {
-                // noinspection JSUnresolvedReference
-                return {
-                    id: post.id,
-                    title: post.title,
-                    link: post.mediumUrl,
-                    pubDate: post.firstPublishedAt,
-                    categories: post.tags.map(
-                        (tag_obj: any) => tag_obj.id
-                    ),
-                };
-            });
+        let posts: PublishedPost[] =
+            resp_data.data.user.profileStreamConnection.stream
+                .map((stream: any) => {
+                    // noinspection JSUnresolvedReference
+                    return stream.itemType.post;
+                })
+                .map((post: any) => {
+                    // noinspection JSUnresolvedReference
+                    return {
+                        id: post.id,
+                        title: post.title,
+                        link: post.mediumUrl,
+                        pubDate: post.firstPublishedAt,
+                        categories: post.tags.map(
+                            (tag_obj: any) => tag_obj.id
+                        ),
+                    };
+                });
 
         // noinspection JSUnresolvedReference
         const next: number =
@@ -346,7 +367,7 @@ class MediumClient {
         };
     }
 
-    async _getUserPostTitles(username: string, page: number) {
+    async _getPostTitles(username: string, page: number) {
         let graphqlBody = {
             operationName: 'UserStreamOverview',
             query: graphqlQueryMin,

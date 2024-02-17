@@ -52,17 +52,21 @@ async function main() {
 
   // Publish New Draft Post for User
   const post = await medium.createPost({
-    userId,
+    // Only `title` and `content` are required to create a post
     title: 'A new post',
-    contentFormat: PostContentFormat.HTML,
     content: '<h1>A New Post</h1><p>This is my new post.</p>',
-    publishStatus: PostPublishStatus.DRAFT,
+    // Optional below
+    userId,
+    contentFormat: PostContentFormat.HTML,   // Defaults to `markdown`
+    publishStatus: PostPublishStatus.DRAFT,  // Defaults to `draft`
+    // tags: ["my", "tags"],
+    // canonicalUrl: "https://my-url.com",
   });
   console.log(`New Post: ${JSON.stringify(post, null, 2)}`);
 
-  // Get User's Published Posts
-  const postTitles = await medium.getUserPostTitles(username);
-  console.log(`User Posts: ${JSON.stringify(postTitles, null, 2)}`);
+  // Get User's Published Posts (Title Only)
+  const postTitles = await medium.getPostTitles(username);
+  console.log(`User Post Titles: ${JSON.stringify(postTitles, null, 2)}`);
 }
 
 main();

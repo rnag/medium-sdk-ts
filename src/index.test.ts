@@ -45,7 +45,7 @@ describe('Medium SDK', () => {
 
     test('Get Post Titles', async () => {
         // const { username } = await medium.getUser();
-        const postTitles = await medium.getUserPostTitles(username);
+        const postTitles = await medium.getPostTitles(username);
 
         // console.log(JSON.stringify(postTitles));
         console.log(postTitles);
@@ -53,9 +53,9 @@ describe('Medium SDK', () => {
 
     test('Get Posts', async () => {
         // const { username } = await medium.getUser();
-        const posts = await medium.getUserPosts(username);
+        const posts = await medium.getPosts(username);
 
-        // console.log(JSON.stringify(postTitles));
+        // console.log(JSON.stringify(posts));
         console.log(posts);
     });
 

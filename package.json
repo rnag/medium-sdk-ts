@@ -1,6 +1,6 @@
 {
   "name": "medium-sdk-ts",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "TypeScript (TS) client for the Medium SDK",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
@@ -42,7 +42,7 @@
     "url": "https://github.com/rnag/medium-sdk-ts/issues"
   },
   "homepage": "https://github.com/rnag/medium-sdk-ts#readme",
-  "packageManager": "pnpm@8.x",
+  "packageManager": "pnpm@8.15.2",
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
     "@types/jest": "^29.5.12",
