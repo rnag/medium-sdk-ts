@@ -19,8 +19,8 @@ module.exports = {
     plugins: ["@typescript-eslint"],
     parser: "@typescript-eslint/parser",
     parserOptions: {
-        project: true,
-        tsconfigRootDir: __dirname,
+      project: './tsconfig.json',
+      tsconfigRootDir: __dirname,
     },
     /**
      * You can use the rules inside this overrides to specify the rules you want
