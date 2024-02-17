@@ -254,10 +254,10 @@ class MediumClient {
         }
     }
 
-    async getUserPostTitles(username: string) {
-        let next = 0,
-            allPosts = [],
-            posts;
+    async getUserPostTitles(username: string): Promise<string[]> {
+        let next: number = 0,
+            allPosts: string[] = [],
+            posts: string[];
 
         while (next != null) {
             ({ posts, next } = await this._getUserPostTitles(
@@ -312,7 +312,7 @@ class MediumClient {
 
         // NOTE: strip non-post items and strip description fields
         let resp_data = await resp.json();
-        let author = resp_data.data.user.name;
+        let author: string = resp_data.data.user.name;
         // noinspection JSUnresolvedReference
         let posts = resp_data.data.user.profileStreamConnection.stream
             .map((stream: any) => {
@@ -333,7 +333,7 @@ class MediumClient {
             });
 
         // noinspection JSUnresolvedReference
-        const next =
+        const next: number =
             posts.length === pageLimit
                 ? resp_data.data.user.profileStreamConnection
                       .pagingInfo.next.to
@@ -370,17 +370,18 @@ class MediumClient {
         // NOTE: strip non-post items and strip description fields
         let resp_data = await resp.json();
         // noinspection JSUnresolvedReference
-        let posts = resp_data.data.user.profileStreamConnection.stream
-            .map((stream: any) => {
-                // noinspection JSUnresolvedReference
-                return stream.itemType.post;
-            })
-            .map((post: any) => {
-                return post.title;
-            });
+        let posts: string[] =
+            resp_data.data.user.profileStreamConnection.stream
+                .map((stream: any) => {
+                    // noinspection JSUnresolvedReference
+                    return stream.itemType.post;
+                })
+                .map((post: any) => {
+                    return post.title;
+                });
 
         // noinspection JSUnresolvedReference
-        const next =
+        const next: number =
             posts.length === pageLimit
                 ? resp_data.data.user.profileStreamConnection
                       .pagingInfo.next.to

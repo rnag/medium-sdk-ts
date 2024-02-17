@@ -27,34 +27,31 @@ Usage
 Create a client, then call commands on it.
 
 ```javascript
-var medium = require('medium-sdk')
+import {
+  MediumClient,
+  PostContentFormat,
+  PostPublishStatus,
+} from 'medium-sdk-ts';
 
-var client = new medium.MediumClient({
-  clientId: 'YOUR_CLIENT_ID',
-  clientSecret: 'YOUR_CLIENT_SECRET'
-})
+// Access Token is optional, can also be set
+// as environment variable `MEDIUM_ACCESS_TOKEN`
+const medium = new MediumClient('YOUR_ACCESS_TOKEN');
 
-var redirectURL = 'https://yoursite.com/callback/medium'; 
+const { id: userId, username } = await medium.getUser();
 
-var url = client.getAuthorizationUrl('secretState', redirectURL, [
-  medium.Scope.BASIC_PROFILE, medium.Scope.PUBLISH_POST
-])
+// Publish New Draft Post for User
+const post = await medium.createPost({
+  userId,
+  title: 'A new post',
+  contentFormat: PostContentFormat.HTML,
+  content: '<h1>A New Post</h1><p>This is my new post.</p>',
+  publishStatus: PostPublishStatus.DRAFT,
+});
+console.log(`New Post: ${JSON.stringify(post, null, 2)}`);
 
-// (Send the user to the authorization URL to obtain an authorization code.)
-
-client.exchangeAuthorizationCode('YOUR_AUTHORIZATION_CODE', redirectURL, function (err, token) {
-  client.getUser(function (err, user) {
-    client.createPost({
-      userId: user.id,
-      title: 'A new post',
-      contentFormat: medium.PostContentFormat.HTML,
-      content: '<h1>A New Post</h1><p>This is my new post.</p>',
-      publishStatus: medium.PostPublishStatus.DRAFT
-    }, function (err, post) {
-      console.log(token, user, post)
-    })
-  })
-})
+// Get User's Published Posts
+const postTitles = await medium.getUserPostTitles(username);
+console.log(`User Posts: ${JSON.stringify(postTitles, null, 2)}`);
 ```
 
 Contributing
