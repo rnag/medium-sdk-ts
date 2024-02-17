@@ -1,7 +1,7 @@
 {
   "name": "medium-sdk-ts",
   "version": "0.0.10",
-  "description": "TypeScript (TS) client for the Medium SDK",
+  "description": "TypeScript (TS) client for the Medium SDK and app",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
   "exports": {
@@ -30,7 +30,11 @@
     "writing",
     "nodejs",
     "typescript",
-    "ts"
+    "ts",
+    "sdk",
+    "app",
+    "platform",
+    "graphql"
   ],
   "author": "Ritvik Nag <me@ritviknag.com> (https://github.com/rnag)",
   "license": "MIT",
